@@ -40,26 +40,26 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles).to eq([])
       expect(@facility_1.collected_fees).to eq(0)
 
-      facility_1.register_vehicle(@cruz)
+      @facility_1.register_vehicle(@cruz)
       
-      expect(facility_1.registered_vehicles).to eq([cruz])
+      expect(@facility_1.registered_vehicles).to eq([cruz])
       expect(@cruz.registration_date).to be_a(Date) 
       expect(@cruz.plate_type).to eq(:regular)
       expect(@facility_1.collected_fees).to eq(100)
 
       facility_1.register_vehicle(@camaro)
 
-      expect(facility_1.registered_vehicles).to include(@camaro)
+      expect(@facility_1.registered_vehicles).to include(@camaro)
       expect(@camaro.registration_date).to be_a(Date) 
       expect(@camaro.plate_type).to eq(:antique)
-      expect(facility_1.collected_fees).to eq(125) 
+      expect(@facility_1.collected_fees).to eq(125) 
 
       facility_1.register_vehicle(@bolt)
 
-      expect(facility_1.registered_vehicles).to include(@bolt)
+      expect(@facility_1.registered_vehicles).to include(@bolt)
       expect(@bolt.registration_date).to be_a(Date) 
       expect(@bolt.plate_type).to eq(:ev)
-      expect(facility_1.collected_fees).to eq(325) 
+      expect(@facility_1.collected_fees).to eq(325) 
     end
 
     it 'will not register a vehicle if the service is not offered' do
@@ -95,7 +95,7 @@ RSpec.describe Facility do
 
       @facility_1.add_service('Written Test')
       @facility_1.administer_written_test(@registrant_1)
-      expect(@registrant_1.administer_road_test(@registrant_1)).to eq(true)
+      expect(@facility_1.administer_road_test(@registrant_1)).to eq(true)
       expect(@registrant_1.license_data[:license]).to eq (true)
     end
   end
