@@ -65,8 +65,8 @@ RSpec.describe Facility do
     it 'will not register a vehicle if the service is not offered' do
       expect(@facility_2.services).to eq([])
 
-      expect(facility_2.register_vehicle(@bolt)).to be_nil
-      expect(facility_2.registered_vehicles).to eq([])
+      expect(@facility_2.register_vehicle(@bolt)).to be_nil
+      expect(@facility_2.registered_vehicles).to eq([])
       expect(@facility_2.collected_fees).to eq(0)
     end
   end
