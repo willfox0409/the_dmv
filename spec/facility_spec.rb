@@ -70,4 +70,24 @@ RSpec.describe Facility do
       expect(@facility_2.collected_fees).to eq(0)
     end
   end
+
+  describe '#administer_written_test' do
+    it 'administers the written test only to eligible registrants' do
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(false)
+
+      @facility_1.add_service('Written Test')
+      expect(@facility_1.administer_written_test(@registrant_1)).to eq(true)
+      expect(@registrant_1.license_data[:written]).to eq(true)
+
+      expect(@facility_1.administer_written_test(@registrant_2)).to eq(false)
+
+      @registrant_2.earn_permit
+      expect(@facility_1.administer_written_test(@registrant_2)).to eq(true)
+      expect(@registrant_2.license_data[:written]).to eq(true)
+    end
+  end
+
+
+      end
+    end
 end
