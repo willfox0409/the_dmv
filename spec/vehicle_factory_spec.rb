@@ -15,7 +15,7 @@ RSpec.describe VehicleFactory do
       expect(vehicles.first).to be_a(Vehicle)
       expect(vehicles.first.engine).to eq(:ev)
 
-      makes = vehicles.map(&:make)
+      makes = vehicles.map { |vehicle| vehicle.make }
       expect(makes).to include('TOYOTA')
     end
   end 
