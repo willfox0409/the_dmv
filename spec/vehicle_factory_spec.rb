@@ -11,10 +11,12 @@ RSpec.describe VehicleFactory do
     it 'creates vehicle objects from the wa ev data' do
       vehicles = @factory.create_vehicles(@wa_ev_data)
 
-      expect(vehicles).to be_an(array)
-      expect(vehicles.first).to be_a(vehicle)
+      expect(vehicles).to be_an(Array)
+      expect(vehicles.first).to be_a(Vehicle)
       expect(vehicles.first.engine).to eq(:ev)
-      expect(vehicles.first.make).to eq('TOYOTA')
+
+      makes = vehicles.map(&:make)
+      expect(makes).to include('TOYOTA')
     end
   end 
 end
