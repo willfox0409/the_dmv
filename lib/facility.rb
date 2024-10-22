@@ -6,7 +6,7 @@ class Facility
     @name = details[:name]
     @address = details[:address]
     @phone = details[:phone]
-    @services = []  
+    @services = details[:services] || []   
     @registered_vehicles = []
     @collected_fees = 0
   end
