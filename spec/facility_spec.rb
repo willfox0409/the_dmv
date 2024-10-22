@@ -47,14 +47,14 @@ RSpec.describe Facility do
       expect(@cruz.plate_type).to eq(:regular)
       expect(@facility_1.collected_fees).to eq(100)
 
-      facility_1.register_vehicle(@camaro)
+      @facility_1.register_vehicle(@camaro)
 
       expect(@facility_1.registered_vehicles).to include(@camaro)
       expect(@camaro.registration_date).to be_a(Date) 
       expect(@camaro.plate_type).to eq(:antique)
       expect(@facility_1.collected_fees).to eq(125) 
 
-      facility_1.register_vehicle(@bolt)
+      @facility_1.register_vehicle(@bolt)
 
       expect(@facility_1.registered_vehicles).to include(@bolt)
       expect(@bolt.registration_date).to be_a(Date) 
