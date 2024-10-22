@@ -1,12 +1,14 @@
 class Facility
-  attr_reader :name, :address, :phone, :services, :registered_vehicles
+  attr_reader :name, :address, :phone, :services, :registered_vehicles, :hours, :address_id
   attr_accessor :collected_fees
 
   def initialize(details)
     @name = details[:name]
     @address = details[:address]
     @phone = details[:phone]
-    @services = []  
+    @services = details[:services] || []   
+    @hours = details[:hours] || "Hours not available"
+    @address_id = details[:address_id]
     @registered_vehicles = []
     @collected_fees = 0
   end
