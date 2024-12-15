@@ -15,7 +15,7 @@ class Facility
   end
 
   def register_vehicle(vehicle) # refactor to be more concise, combine these conditional blocks?
-    if @services.include?('Vehicle Registration')
+    if @services.include?('Vehicle Registration') #facility MUST OFFER SERVICE FIRST 
 
       vehicle.registration_date = Date.today
       @registered_vehicles << vehicle 
@@ -34,6 +34,22 @@ class Facility
       else
         @collected_fees += 100
       end
+    end
+  end
+
+  def administer_written_test(registrant)
+    if @services.include?('Written Test') && registrant.age >= 16 && registrant.permit?
+      registrant.license_data[:written] = true 
+    else
+      false
+    end
+  end
+
+  def administer_road_test(registrant)
+    if @services.include?('Road Test') && registrant.license_data[:written] == true
+      registrant.license_data[:license] = true
+    else
+      false
     end
   end
 end
