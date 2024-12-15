@@ -34,6 +34,10 @@ RSpec.describe Facility do
   end
 
   describe '#register_vehicle' do 
+    before(:each) do 
+      @facility_1.add_service('Vehicle Registration')
+    end 
+
     it 'registers a single vehicle to the facility' do 
       expect(@facility_1.registered_vehicles).to eq([])
 
@@ -83,6 +87,16 @@ RSpec.describe Facility do
       
       @facility_1.register_vehicle(@bolt)
       expect(@facility_1.collected_fees).to eq(325)
+    end
+
+    it 'does not register vehicles if the service is not offered' do
+      expect(@facility_2.registered_vehicles).to eq([])
+      expect(@facility_2.collected_fees).to eq(0)
+    
+      @facility_2.register_vehicle(@bolt)
+    
+      expect(@facility_2.registered_vehicles).to eq([])
+      expect(@facility_2.collected_fees).to eq(0)
     end
   end
 end
