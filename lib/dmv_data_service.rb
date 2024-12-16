@@ -23,3 +23,17 @@ class DmvDataService
     @mo_dmv_office_locations ||= load_data('https://data.mo.gov/resource/835g-7keg.json')
   end
 end
+
+# data = DmvDataService.new.wa_ev_registrations
+
+# data[0..50].each do |entry|
+#   puts entry[:model]
+# end
+
+# p data.first.keys
+
+# factory = VehicleFactory.new
+# wa_ev_data = DmvDataService.new.wa_ev_registrations; nil
+# vehicles = factory.create_vehicles(wa_ev_data)
+
+# puts vehicles.first.inspect
