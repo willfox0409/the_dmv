@@ -5,6 +5,7 @@ RSpec.describe FacilityFactory do
         @facility_factory = FacilityFactory.new
         @co_source = :co
         @ny_source = :ny
+        @mo_source = :mo
 
         @co_mock_data = [
             {
@@ -29,6 +30,25 @@ RSpec.describe FacilityFactory do
                 office_name: "HUDSON",
                 street_address_line_1: "560 WARREN STREET",
                 public_phone_number: "5188283350"
+            }
+        ]
+
+        @mo_mock_data = [
+            {
+                name: "Harrisonville",
+                address1: "2009 Plaza Dr.",
+                city: "Harrisonville",
+                state: "MO",
+                zipcode: "64701",
+                phone: "(816) 884-4133"
+                },
+                {
+                name: "High Ridge",
+                address1: "1684 Old Gravois RD",
+                city: "High Ridge",
+                state: "MO",
+                zipcode: "63049",
+                phone: "(636) 677-3339"
             }
         ]
     end
@@ -70,6 +90,24 @@ RSpec.describe FacilityFactory do
             expect(second_facility.name).to eq("HUDSON")
             expect(second_facility.address).to eq("560 WARREN STREET")
             expect(second_facility.phone).to eq("5188283350")
+        end
+
+        it 'creates facilities from Missouri data' do 
+            facilities = @facility_factory.create_facilities(@mo_mock_data, @mo_source)
+
+            expect(facilities.size).to eq(2)
+
+            first_facility = facilities.first
+            expect(first_facility).to be_a(Facility)
+            expect(first_facility.name).to eq("Harrisonville")
+            expect(first_facility.address).to eq("2009 Plaza Dr., Harrisonville, MO 64701")
+            expect(first_facility.phone).to eq("(816) 884-4133")
+          
+            second_facility = facilities.last
+            expect(second_facility).to be_a(Facility)
+            expect(second_facility.name).to eq("High Ridge")
+            expect(second_facility.address).to eq("1684 Old Gravois RD, High Ridge, MO 63049")
+            expect(second_facility.phone).to eq("(636) 677-3339")
         end
     end
 end
