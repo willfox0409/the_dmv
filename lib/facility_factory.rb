@@ -29,7 +29,7 @@ class FacilityFactory
                 })
                 facilities << facility
             end
-            facilities
         end 
+        facilities
     end
 end
