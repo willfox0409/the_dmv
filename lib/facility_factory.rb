@@ -16,6 +16,19 @@ class FacilityFactory
                 })
                 facilities << facility
             end
+        when :ny
+            data.each do |entry|
+                name = entry[:office_name]
+                address = entry[:street_address_line_1]
+                phone = entry[:public_phone_number]
+
+                facility = Facility.new({
+                    name: name,
+                    address: address,
+                    phone: phone
+                })
+                facilities << facility
+            end
             facilities
         end 
     end
