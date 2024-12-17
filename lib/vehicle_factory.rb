@@ -9,9 +9,9 @@ class VehicleFactory
 
             vehicle = Vehicle.new({
               vin: vin, 
+              year: year,
               make: make, 
               model: model, 
-              year: year,
               engine: :ev
             })
             vehicles << vehicle 
