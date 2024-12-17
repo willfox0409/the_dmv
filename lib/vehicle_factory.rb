@@ -8,11 +8,11 @@ class VehicleFactory
             model = entry[:model]
 
             vehicle = Vehicle.new({
-              vin: vin, 
-              year: year,
-              make: make, 
-              model: model, 
-              engine: :ev
+                vin: vin, 
+                year: year,
+                make: make, 
+                model: model, 
+                engine: :ev
             })
             vehicles << vehicle 
         end
