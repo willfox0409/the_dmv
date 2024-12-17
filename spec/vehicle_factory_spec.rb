@@ -20,7 +20,7 @@ RSpec.describe VehicleFactory do
     end
 
     describe 'create_vehicles' do 
-      it 'creates an array of vehicles from the raw data' do 
+        it 'creates an array of vehicles from the raw data' do 
             vehicles = @factory.create_vehicles(@mock_data)
 
             expect(vehicles).to be_an(Array)
