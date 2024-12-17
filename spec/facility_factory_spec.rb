@@ -109,5 +109,32 @@ RSpec.describe FacilityFactory do
             expect(second_facility.address).to eq("1684 Old Gravois RD, High Ridge, MO 63049")
             expect(second_facility.phone).to eq("(636) 677-3339")
         end
+
+        it 'returns an empty array when given an invalid source' do
+            facilities = @facility_factory.create_facilities(@co_mock_data, :invalid_source)
+            expect(facilities).to eq([])
+        end
+
+        it 'handles data with missing keys' do
+            incomplete_data = [
+                { dmv_office: "DMV Southwest Branch", phone: "(720) 865-4600" }, 
+                { address_li: "3100 S. Sheridan Blvd.", phone: "(720) 865-4600" } 
+            ]
+          
+            facilities = @facility_factory.create_facilities(incomplete_data, @co_source)
+          
+            expect(facilities.size).to eq(2)
+          
+            first_facility = facilities.first
+            expect(first_facility.name).to eq("DMV Southwest Branch")
+            expect(first_facility.address).to eq(nil)
+            expect(first_facility.phone).to eq("(720) 865-4600")
+          
+            second_facility = facilities.last
+            expect(second_facility.name).to eq(nil)
+            expect(second_facility.address).to eq("3100 S. Sheridan Blvd.")
+            expect(second_facility.phone).to eq("(720) 865-4600")
+        end
     end
 end
+
