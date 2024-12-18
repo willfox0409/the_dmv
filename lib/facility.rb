@@ -14,8 +14,8 @@ class Facility
     @services << service
   end
 
-  def register_vehicle(vehicle) # refactor to be more concise, combine these conditional blocks?
-    if @services.include?('Vehicle Registration') #facility MUST OFFER SERVICE FIRST 
+  def register_vehicle(vehicle) 
+    if @services.include?('Vehicle Registration') 
 
       vehicle.registration_date = Date.today
       @registered_vehicles << vehicle 
